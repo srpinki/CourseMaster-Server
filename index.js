@@ -28,8 +28,12 @@ connectDB().then(() => {
 
   // Health check
   app.get("/api/health", (req, res) => res.json({ ok: true }));
-
+  app.get("/", (req, res) => {
+    res.send("API Server is running successfully!");
+  });
   // Start server
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => console.log(`API listening on ${PORT}`));
 });
+
+module.exports = app;
