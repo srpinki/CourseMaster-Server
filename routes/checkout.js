@@ -49,4 +49,16 @@ router.post("/create-session", async (req, res) => {
   }
 });
 
+
+router.get("/session/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const session = await stripe.checkout.sessions.retrieve(id);
+    res.json(session);
+  } catch (err) {
+    console.error("Stripe session fetch failed:", err);
+    res.status(500).json({ error: "Failed to fetch session" });
+  }
+});
+
 module.exports = router;
