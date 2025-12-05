@@ -9,6 +9,9 @@ const app = express();
 // Connect to DB first
 connectDB().then(() => console.log("DB connected")).catch(err => console.error(err));
 
+const webhookRoute = require("./routes/webhook");
+app.use("/webhook", webhookRoute);
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -20,6 +23,7 @@ app.use(
 );
 
 // Routes
+app.use("/api/checkout", require("./routes/checkout"));
 const authRoutes = require("./routes/auth");
 const courseRoutes = require("./routes/courseRoutes");
 
@@ -38,5 +42,5 @@ if (process.env.NODE_ENV !== "production") {
   app.listen(PORT, () => console.log(`API listening on ${PORT}`));
 }
 
-// Export app for serverless Vercel deployment
+
 module.exports = app;
