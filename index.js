@@ -42,9 +42,13 @@ app.use(
 app.use("/api/checkout", require("./routes/checkout"));
 const authRoutes = require("./routes/auth");
 const courseRoutes = require("./routes/courseRoutes");
+const adminCourseRoutes = require("./routes/adminCourseRoutes");
+const adminAssignmentRoutes = require("./routes/adminAssignmentRoutes");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/courses", courseRoutes);
+app.use("/api/admin/courses", adminCourseRoutes);
+app.use("/api/admin/assignments", adminAssignmentRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => res.json({ ok: true }));

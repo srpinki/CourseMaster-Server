@@ -49,7 +49,7 @@ router.post("/create-session", async (req, res) => {
   }
 });
 
-
+// backend/routes/checkout.js
 router.get("/session/:id", async (req, res) => {
   const { id } = req.params;
   try {
